@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Gabriel Gregório — Projects">
+<title>Gabriel Gregório | Projects</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07071a;--card:#0f0f28;
+  --b1:rgba(99,102,241,.18);--b2:rgba(255,255,255,.05);
+  --ind:#6366f1;--ind2:#818cf8;--cyan:#06b6d4;--cyan2:#22d3ee;
+  --t1:#e2e8f0;--t2:#94a3b8;--t3:#475569;
+  --grad:linear-gradient(135deg,#6366f1,#06b6d4);
+  --rl:16px;--glow:0 0 40px rgba(99,102,241,.15);
+  --cx:-999px;--cy:-999px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::selection{background:rgba(99,102,241,.3)}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--ind);border-radius:2px}
+a{text-decoration:none;color:inherit}
+img{display:block}
+#bg-canvas{position:fixed;inset:0;width:100%;height:100%;opacity:.18;z-index:0;pointer-events:none}
+body::after{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(700px circle at var(--cx) var(--cy),rgba(99,102,241,.06),transparent 40%)}
+
+.page{position:relative;z-index:2;max-width:1000px;margin:0 auto;padding:4rem 2rem 6rem}
+
+.page-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:3.5rem;padding-bottom:1.5rem;
+  border-bottom:1px solid var(--b2);
+}
+.back-link{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.78rem;font-weight:600;font-family:'JetBrains Mono',monospace;
+  color:var(--t3);border:1px solid var(--b2);border-radius:8px;
+  padding:.4rem .9rem;background:var(--card);transition:all .3s;
+}
+.back-link:hover{color:var(--t1);border-color:rgba(99,102,241,.3);background:rgba(99,102,241,.07);transform:translateX(-2px)}
+.page-title-wrap{text-align:right}
+.page-tag{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:500;color:var(--ind2);text-transform:uppercase;letter-spacing:.18em;display:block;margin-bottom:.4rem}
+.page-title{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;letter-spacing:-1.5px;line-height:1.1}
+.page-title span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.proj-card{
+  background:var(--card);border:1px solid var(--b2);border-radius:var(--rl);
+  overflow:hidden;display:flex;flex-direction:column;
+  transition:all .35s;position:relative;cursor:default;
+}
+.proj-card:hover{border-color:rgba(99,102,241,.4);box-shadow:var(--glow);transform:translateY(-4px)}
+.proj-thumb{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:top;display:block;transition:transform .4s}
+.proj-card:hover .proj-thumb{transform:scale(1.03)}
+.proj-info{padding:1rem 1.1rem 1.1rem;flex:1;display:flex;flex-direction:column;gap:.35rem}
+.proj-company{font-size:.65rem;font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--ind2);text-transform:uppercase;letter-spacing:.12em}
+.proj-title{font-size:.9rem;font-weight:700;color:var(--t1);line-height:1.35}
+.proj-links{display:flex;flex-direction:column;gap:.35rem;margin-top:auto;padding-top:.75rem}
+.proj-link{font-size:.75rem;color:var(--t3);display:flex;align-items:center;gap:.35rem;transition:color .25s}
+.proj-link-app{color:var(--cyan2)}
+.proj-link:hover{color:var(--t1)}
+.proj-link-app:hover{color:var(--cyan2);filter:brightness(1.25)}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+.reveal.vis{opacity:1;transform:translateY(0)}
+
+@media(max-width:768px){.proj-grid{grid-template-columns:1fr}.page{padding:2rem 1.25rem 4rem}}
+</style>
+</head>
+<body>
+<canvas id="bg-canvas"></canvas>
+<div class="page">
+  <div class="page-header">
+    <a href="index.html" class="back-link">← Home</a>
+    <div class="page-title-wrap">
+      <span class="page-tag">// gabriel gregório</span>
+      <h1 class="page-title">Personal <span>Projects</span></h1>
+    </div>
+  </div>
+
+  <div class="proj-grid">
+
+    <div class="proj-card reveal">
+      <img class="proj-thumb" src="Projects/sansao.png" alt="Sansão Index">
+      <div class="proj-info">
+        <div class="proj-company">Data · Sports Analytics</div>
+        <div class="proj-title">Sansão Index — When the Wrong Metric Ruins a Fair Competition</div>
+        <div class="proj-links">
+          <a href="https://sansao-index.pages.dev" target="_blank" rel="noopener" class="proj-link proj-link-app">↗ Open application</a>
+          <a href="https://medium.com/@gabrielgregorio10/sans%C3%A3o-index-when-the-wrong-metric-ruins-a-fair-competition-b62920190585" target="_blank" rel="noopener" class="proj-link">✍ Read the article on Medium</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj-card reveal">
+      <img class="proj-thumb" src="Projects/poker.png" alt="Calculadora de Poker">
+      <div class="proj-info">
+        <div class="proj-company">Data · Game Analytics</div>
+        <div class="proj-title">Calculadora de Poker — Real-Time Hand Odds &amp; Win Probability</div>
+        <div class="proj-links">
+          <a href="https://calculadora-de-poker.streamlit.app/" target="_blank" rel="noopener" class="proj-link proj-link-app">↗ Open application</a>
+          <a href="https://medium.com/p/7486fbced653?postPublishedType=initial" target="_blank" rel="noopener" class="proj-link">✍ Read the article on Medium</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<script>
+document.addEventListener('mousemove',e=>{
+  document.documentElement.style.setProperty('--cx',e.clientX+'px');
+  document.documentElement.style.setProperty('--cy',e.clientY+'px');
+});
+const canvas=document.getElementById('bg-canvas'),ctx=canvas.getContext('2d');
+let W,H,pts=[];
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
+resize();window.addEventListener('resize',()=>{resize();initPts()});
+function initPts(){pts=[];const n=Math.floor((W*H)/16000);for(let i=0;i<n;i++)pts.push(mkPt())}
+function mkPt(){return{x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:Math.random()*1.2+.3,o:Math.random()*.35+.1}}
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  for(let i=0;i<pts.length;i++){
+    const p=pts[i];p.x+=p.vx;p.y+=p.vy;
+    if(p.x<0||p.x>W)p.vx=-p.vx;if(p.y<0||p.y>H)p.vy=-p.vy;
+    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(99,102,241,${p.o})`;ctx.fill();
+    for(let j=i+1;j<pts.length;j++){
+      const q=pts[j],dx=p.x-q.x,dy=p.y-q.y,d=Math.sqrt(dx*dx+dy*dy);
+      if(d<100){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle=`rgba(99,102,241,${(1-d/100)*.08})`;ctx.lineWidth=.5;ctx.stroke()}
+    }
+  }
+  requestAnimationFrame(draw);
+}
+initPts();draw();
+const ro=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')});},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+requestAnimationFrame(()=>document.querySelectorAll('.reveal').forEach(el=>{const r=el.getBoundingClientRect();if(r.top<window.innerHeight)el.classList.add('vis')}));
+</script>
+</body>
+</html>
