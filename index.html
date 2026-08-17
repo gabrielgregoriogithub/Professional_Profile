@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Gabriel Gregório — Senior Data Analyst specializing in fraud analytics, risk intelligence, and data-driven business strategy.">
+<title>Gabriel Gregório | Senior Data Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07071a;--card:#0f0f28;--b2:rgba(255,255,255,.05);
+  --ind:#6366f1;--ind2:#818cf8;--cyan:#06b6d4;
+  --t1:#e2e8f0;--t2:#94a3b8;--t3:#475569;
+  --grad:linear-gradient(135deg,#6366f1,#06b6d4);
+  --rl:16px;--glow2:0 0 60px rgba(99,102,241,.25);
+  --cx:-999px;--cy:-999px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{font-size:16px}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--bg);color:var(--t1);
+  min-height:100vh;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:2.5rem 1.5rem;
+}
+a{text-decoration:none;color:inherit}
+img{display:block}
+#bg-canvas{position:fixed;inset:0;width:100%;height:100%;opacity:.18;z-index:0;pointer-events:none}
+body::after{
+  content:'';position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(700px circle at var(--cx) var(--cy),rgba(99,102,241,.06),transparent 40%);
+}
+.landing{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:2.75rem;width:100%;max-width:1020px}
+.hero{text-align:center;width:100%}
+.hero-name{
+  font-size:clamp(2rem,5vw,3.5rem);font-weight:900;letter-spacing:-2px;line-height:1.05;margin-bottom:.45rem;
+}
+.hero-name span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:.82rem;color:var(--t2);font-family:'JetBrains Mono',monospace;letter-spacing:.08em;margin-bottom:1.25rem}
+.contact-links{display:grid;grid-template-columns:repeat(4,1fr);gap:.65rem;width:100%;max-width:900px}
+.c-link{display:flex;align-items:center;gap:.9rem;padding:.85rem 1rem;background:var(--card);border:1px solid var(--b2);border-radius:10px;color:var(--t2);transition:all .3s}
+.c-link:hover{border-color:var(--b1);color:var(--t1);background:rgba(99,102,241,.05);transform:translateX(3px)}
+.c-ic{width:34px;height:34px;border-radius:9px;background:rgba(99,102,241,.1);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+.c-lbl{font-size:.6rem;color:var(--t3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.12rem}
+.c-val{font-size:.8rem;font-weight:500}
+@media(max-width:700px){.contact-links{grid-template-columns:1fr 1fr}}
+.cards-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;width:100%}
+.entry-card{
+  display:block;border-radius:var(--rl);overflow:hidden;
+  border:1px solid var(--b2);background:var(--card);
+  transition:all .35s cubic-bezier(.4,0,.2,1);
+}
+.entry-card:hover{
+  border-color:rgba(99,102,241,.4);
+  box-shadow:var(--glow2);
+  transform:translateY(-7px);
+}
+.card-img{
+  width:100%;aspect-ratio:4/3;object-fit:cover;object-position:top;
+  transition:transform .45s;
+}
+.entry-card:hover .card-img{transform:scale(1.04)}
+.card-footer{
+  padding:.9rem 1.1rem .95rem;
+  display:flex;justify-content:space-between;align-items:center;
+  border-top:1px solid var(--b2);
+}
+.card-info{display:flex;flex-direction:column;gap:.1rem}
+.card-label{font-size:.9rem;font-weight:700;color:var(--t1)}
+.card-desc{font-size:.68rem;color:var(--t3);font-family:'JetBrains Mono',monospace}
+.card-arrow{
+  font-size:1.1rem;color:var(--t3);flex-shrink:0;
+  transition:color .25s,transform .25s;
+}
+.entry-card:hover .card-arrow{color:var(--ind2);transform:translate(2px,-2px)}
+@media(max-width:900px){.cards-row{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){
+  .cards-row{grid-template-columns:1fr;max-width:420px}
+  body{justify-content:flex-start;padding-top:3rem}
+}
+</style>
+</head>
+<body>
+<canvas id="bg-canvas"></canvas>
+<div class="landing">
+  <div class="hero">
+    <h1 class="hero-name">Gabriel <span>Gregório</span></h1>
+    <p class="hero-sub">Senior Data Analyst · São Paulo, Brazil</p>
+    <div class="contact-links">
+      <a href="mailto:gabrielgregorio10@gmail.com" class="c-link"><div class="c-ic">✉️</div><div><div class="c-lbl">Email</div><div class="c-val">gabrielgregorio10@gmail.com</div></div></a>
+      <a href="https://www.linkedin.com/in/gabrielgregorio" target="_blank" rel="noopener" class="c-link"><div class="c-ic">💼</div><div><div class="c-lbl">LinkedIn</div><div class="c-val">linkedin.com/in/gabrielgregorio</div></div></a>
+      <a href="https://github.com/gabrielgregoriogithub/" target="_blank" rel="noopener" class="c-link"><div class="c-ic">🐙</div><div><div class="c-lbl">GitHub</div><div class="c-val">github.com/gabrielgregoriogithub</div></div></a>
+      <a href="Gabriel_Gregorio%20.pdf" download class="c-link"><div class="c-ic">📄</div><div><div class="c-lbl">Resume</div><div class="c-val">Download CV</div></div></a>
+    </div>
+  </div>
+  <div class="cards-row">
+    <a href="bio.html" class="entry-card">
+      <img class="card-img" src="profile.png" alt="Bio &amp; Profile">
+      <div class="card-footer">
+        <div class="card-info">
+          <span class="card-label">Bio &amp; Profile</span>
+          <span class="card-desc">Experience · Skills · Education</span>
+        </div>
+        <span class="card-arrow">↗</span>
+      </div>
+    </a>
+    <a href="case-studies.html" class="entry-card">
+      <img class="card-img" src="Case Studies/Case Studies.png" alt="Case Studies">
+      <div class="card-footer">
+        <div class="card-info">
+          <span class="card-label">Case Studies</span>
+          <span class="card-desc">Real-world case studies in tech companies</span>
+        </div>
+        <span class="card-arrow">↗</span>
+      </div>
+    </a>
+    <a href="ml-models.html" class="entry-card">
+      <img class="card-img" src="ML Models and Dashboards/ML Models & Dashboards.png" alt="ML Models & Dashboards">
+      <div class="card-footer">
+        <div class="card-info">
+          <span class="card-label">ML Models &amp; Dashboards</span>
+          <span class="card-desc">Machine Learning · Predictive Models · Dashboards</span>
+        </div>
+        <span class="card-arrow">↗</span>
+      </div>
+    </a>
+    <a href="ai-projects.html" class="entry-card">
+      <img class="card-img" src="AI Projects/AI Projetcs.png" alt="AI Projects">
+      <div class="card-footer">
+        <div class="card-info">
+          <span class="card-label">AI Projects</span>
+          <span class="card-desc">AI applications built to solve real problems</span>
+        </div>
+        <span class="card-arrow">↗</span>
+      </div>
+    </a>
+  </div>
+</div>
+<script>
+document.addEventListener('mousemove',e=>{
+  document.documentElement.style.setProperty('--cx',e.clientX+'px');
+  document.documentElement.style.setProperty('--cy',e.clientY+'px');
+});
+const canvas=document.getElementById('bg-canvas'),ctx=canvas.getContext('2d');
+let W,H,pts=[];
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
+resize();window.addEventListener('resize',()=>{resize();initPts()});
+function initPts(){pts=[];const n=Math.floor((W*H)/16000);for(let i=0;i<n;i++)pts.push(mkPt())}
+function mkPt(){return{x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:Math.random()*1.2+.3,o:Math.random()*.35+.1}}
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  for(let i=0;i<pts.length;i++){
+    const p=pts[i];p.x+=p.vx;p.y+=p.vy;
+    if(p.x<0||p.x>W)p.vx=-p.vx;if(p.y<0||p.y>H)p.vy=-p.vy;
+    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(99,102,241,${p.o})`;ctx.fill();
+    for(let j=i+1;j<pts.length;j++){
+      const q=pts[j],dx=p.x-q.x,dy=p.y-q.y,d=Math.sqrt(dx*dx+dy*dy);
+      if(d<100){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle=`rgba(99,102,241,${(1-d/100)*.08})`;ctx.lineWidth=.5;ctx.stroke()}
+    }
+  }
+  requestAnimationFrame(draw);
+}
+initPts();draw();
+</script>
+</body>
+</html>
