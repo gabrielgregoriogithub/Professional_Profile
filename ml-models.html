@@ -26,14 +26,32 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);min-hei
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--ind);border-radius:2px}
 a{text-decoration:none;color:inherit}
 img{display:block}
-#bg-canvas{position:fixed;inset:0;width:100%;height:100%;opacity:.55;z-index:0;pointer-events:none}
+.bg-image{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:url('fundo.webp');
+  background-size:cover;background-position:center;background-repeat:no-repeat;
+  transform:scale(1.05);
+  animation:bgPan 40s ease-in-out infinite alternate;
+  will-change:transform;
+}
+@keyframes bgPan{
+  0%{transform:scale(1.05) translate3d(0,0,0)}
+  100%{transform:scale(1.12) translate3d(-1.4%,-1.1%,0)}
+}
+@media(prefers-reduced-motion:reduce){.bg-image{animation:none}}
+.bg-scrim{
+  position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(900px circle at 50% 30%, rgba(5,5,8,.25) 0%, rgba(5,5,8,.6) 62%, rgba(5,5,8,.85) 100%),
+    linear-gradient(to bottom, rgba(5,5,8,.4) 0%, rgba(5,5,8,.2) 18%, rgba(5,5,8,.55) 78%, rgba(5,5,8,.85) 100%);
+}
 body::before{
-  content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.035;mix-blend-mode:overlay;
+  content:'';position:fixed;inset:0;z-index:2;pointer-events:none;opacity:.035;mix-blend-mode:overlay;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
-body::after{content:'';position:fixed;inset:0;z-index:2;pointer-events:none;background:radial-gradient(700px circle at var(--cx) var(--cy),rgba(99,102,241,.07),transparent 40%)}
+body::after{content:'';position:fixed;inset:0;z-index:3;pointer-events:none;background:radial-gradient(700px circle at var(--cx) var(--cy),rgba(99,102,241,.07),transparent 40%)}
 
-.page{position:relative;z-index:3;max-width:1000px;margin:0 auto;padding:4rem 2rem 6rem}
+.page{position:relative;z-index:4;max-width:1000px;margin:0 auto;padding:4rem 2rem 6rem}
 
 .page-header{
   display:flex;align-items:center;justify-content:space-between;
@@ -84,7 +102,8 @@ body::after{content:'';position:fixed;inset:0;z-index:2;pointer-events:none;back
 </style>
 </head>
 <body>
-<canvas id="bg-canvas"></canvas>
+<div class="bg-image" aria-hidden="true"></div>
+<div class="bg-scrim" aria-hidden="true"></div>
 <div class="page">
   <div class="page-header">
     <a href="index.html" class="back-link magnetic">← Home</a>
@@ -154,36 +173,6 @@ document.addEventListener('mousemove',e=>{
   document.documentElement.style.setProperty('--cx',e.clientX+'px');
   document.documentElement.style.setProperty('--cy',e.clientY+'px');
 });
-const canvas=document.getElementById('bg-canvas'),ctx=canvas.getContext('2d');
-let W,H,blobs=[];
-const palette=['99,102,241','6,182,212','129,140,248'];
-function resize(){W=canvas.width=innerWidth;H=canvas.height=innerHeight}
-function initBlobs(){
-  blobs=palette.map((c,i)=>({
-    x:Math.random()*W,y:Math.random()*H,
-    r:Math.min(W,H)*(0.35+Math.random()*0.15),
-    c,o:0.10+Math.random()*0.05,
-    ax:Math.random()*Math.PI*2,ay:Math.random()*Math.PI*2,
-    sx:0.06+Math.random()*0.05,sy:0.05+Math.random()*0.04
-  }));
-}
-resize();initBlobs();window.addEventListener('resize',()=>{resize();initBlobs()});
-let t=0;
-function draw(){
-  t+=0.0032;
-  ctx.clearRect(0,0,W,H);
-  blobs.forEach(b=>{
-    const x=b.x+Math.sin(t*b.sx+b.ax)*W*0.18;
-    const y=b.y+Math.cos(t*b.sy+b.ay)*H*0.18;
-    const g=ctx.createRadialGradient(x,y,0,x,y,b.r);
-    g.addColorStop(0,`rgba(${b.c},${b.o})`);
-    g.addColorStop(1,'rgba(0,0,0,0)');
-    ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,b.r,0,Math.PI*2);ctx.fill();
-  });
-  requestAnimationFrame(draw);
-}
-draw();
-
 gsap.registerPlugin(ScrollTrigger);
 gsap.set('.reveal',{opacity:0,y:28});
 ScrollTrigger.batch('.reveal',{
