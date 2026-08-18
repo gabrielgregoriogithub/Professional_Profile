@@ -10,12 +10,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#07071a;--card:#0f0f28;
-  --b1:rgba(99,102,241,.18);--b2:rgba(255,255,255,.05);
+  --bg:#050508;--card:#101025;
+  --b1:rgba(99,102,241,.22);--b2:rgba(255,255,255,.06);
   --ind:#6366f1;--ind2:#818cf8;--cyan:#06b6d4;--cyan2:#22d3ee;
-  --t1:#e2e8f0;--t2:#94a3b8;--t3:#475569;
+  --t1:#eef0f7;--t2:#8d92ab;--t3:#4c5069;
   --grad:linear-gradient(135deg,#6366f1,#06b6d4);
-  --rl:16px;--glow:0 0 40px rgba(99,102,241,.15);
+  --rl:16px;--glow:0 0 40px rgba(99,102,241,.18);
+  --ease:cubic-bezier(.16,1,.3,1);
   --cx:-999px;--cy:-999px;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -25,10 +26,14 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);min-hei
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--ind);border-radius:2px}
 a{text-decoration:none;color:inherit}
 img{display:block}
-#bg-canvas{position:fixed;inset:0;width:100%;height:100%;opacity:.18;z-index:0;pointer-events:none}
-body::after{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(700px circle at var(--cx) var(--cy),rgba(99,102,241,.06),transparent 40%)}
+#bg-canvas{position:fixed;inset:0;width:100%;height:100%;opacity:.55;z-index:0;pointer-events:none}
+body::before{
+  content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.035;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+body::after{content:'';position:fixed;inset:0;z-index:2;pointer-events:none;background:radial-gradient(700px circle at var(--cx) var(--cy),rgba(99,102,241,.07),transparent 40%)}
 
-.page{position:relative;z-index:2;max-width:1000px;margin:0 auto;padding:4rem 2rem 6rem}
+.page{position:relative;z-index:3;max-width:1000px;margin:0 auto;padding:4rem 2rem 6rem}
 
 .page-header{
   display:flex;align-items:center;justify-content:space-between;
@@ -39,23 +44,31 @@ body::after{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;back
   display:inline-flex;align-items:center;gap:.5rem;
   font-size:.78rem;font-weight:600;font-family:'JetBrains Mono',monospace;
   color:var(--t3);border:1px solid var(--b2);border-radius:8px;
-  padding:.4rem .9rem;background:var(--card);transition:all .3s;
+  padding:.4rem .9rem;background:var(--card);transition:color .3s,border-color .3s,background .3s;
 }
-.back-link:hover{color:var(--t1);border-color:rgba(99,102,241,.3);background:rgba(99,102,241,.07);transform:translateX(-2px)}
+.back-link:hover{color:var(--t1);border-color:rgba(99,102,241,.3);background:rgba(99,102,241,.07)}
 .page-title-wrap{text-align:right}
-.page-tag{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:500;color:var(--ind2);text-transform:uppercase;letter-spacing:.18em;display:block;margin-bottom:.4rem}
-.page-title{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;letter-spacing:-1.5px;line-height:1.1}
+.page-tag{
+  display:inline-flex;align-items:center;gap:.4rem;
+  font-family:'JetBrains Mono',monospace;font-size:.66rem;font-weight:600;
+  color:var(--ind2);text-transform:uppercase;letter-spacing:.14em;
+  padding:.32rem .75rem;border:1px solid var(--b1);border-radius:100px;
+  background:rgba(99,102,241,.06);margin-bottom:.9rem;
+}
+.page-title{font-size:clamp(2rem,4vw,3.1rem);font-weight:900;letter-spacing:-2px;line-height:1.05}
 .page-title span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
 .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
 .proj-card{
   background:var(--card);border:1px solid var(--b2);border-radius:var(--rl);
   overflow:hidden;display:flex;flex-direction:column;
-  transition:all .35s;position:relative;cursor:default;
+  transition:transform .45s var(--ease),border-color .35s,box-shadow .35s;position:relative;cursor:default;
 }
-.proj-card:hover{border-color:rgba(99,102,241,.4);box-shadow:var(--glow);transform:translateY(-4px)}
-.proj-thumb{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:top;display:block;transition:transform .4s}
-.proj-card:hover .proj-thumb{transform:scale(1.03)}
+.proj-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease);z-index:1}
+.proj-card:hover::before{transform:scaleX(1)}
+.proj-card:hover{border-color:rgba(99,102,241,.4);box-shadow:var(--glow);transform:translateY(-6px)}
+.proj-thumb{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:top;display:block;transition:transform .5s var(--ease)}
+.proj-card:hover .proj-thumb{transform:scale(1.04)}
 .proj-info{padding:1rem 1.1rem 1.1rem;flex:1;display:flex;flex-direction:column;gap:.35rem}
 .proj-company{font-size:.65rem;font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--ind2);text-transform:uppercase;letter-spacing:.12em}
 .proj-title{font-size:.9rem;font-weight:700;color:var(--t1);line-height:1.35}
@@ -65,9 +78,6 @@ body::after{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;back
 .proj-link:hover{color:var(--t1)}
 .proj-link-app:hover{color:var(--cyan2);filter:brightness(1.25)}
 
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
-.reveal.vis{opacity:1;transform:translateY(0)}
-
 @media(max-width:768px){.proj-grid{grid-template-columns:1fr}.page{padding:2rem 1.25rem 4rem}}
 </style>
 </head>
@@ -75,9 +85,9 @@ body::after{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;back
 <canvas id="bg-canvas"></canvas>
 <div class="page">
   <div class="page-header">
-    <a href="index.html" class="back-link">← Home</a>
+    <a href="index.html" class="back-link magnetic">← Home</a>
     <div class="page-title-wrap">
-      <span class="page-tag">// gabriel gregório</span>
+      <span class="page-tag">{ gabriel gregório }</span>
       <h1 class="page-title">AI <span>Projects</span></h1>
     </div>
   </div>
@@ -158,34 +168,62 @@ body::after{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;back
 
   </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script>
 document.addEventListener('mousemove',e=>{
   document.documentElement.style.setProperty('--cx',e.clientX+'px');
   document.documentElement.style.setProperty('--cy',e.clientY+'px');
 });
 const canvas=document.getElementById('bg-canvas'),ctx=canvas.getContext('2d');
-let W,H,pts=[];
-function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
-resize();window.addEventListener('resize',()=>{resize();initPts()});
-function initPts(){pts=[];const n=Math.floor((W*H)/16000);for(let i=0;i<n;i++)pts.push(mkPt())}
-function mkPt(){return{x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:Math.random()*1.2+.3,o:Math.random()*.35+.1}}
+let W,H,blobs=[];
+const palette=['99,102,241','6,182,212','129,140,248'];
+function resize(){W=canvas.width=innerWidth;H=canvas.height=innerHeight}
+function initBlobs(){
+  blobs=palette.map((c,i)=>({
+    x:Math.random()*W,y:Math.random()*H,
+    r:Math.min(W,H)*(0.35+Math.random()*0.15),
+    c,o:0.10+Math.random()*0.05,
+    ax:Math.random()*Math.PI*2,ay:Math.random()*Math.PI*2,
+    sx:0.06+Math.random()*0.05,sy:0.05+Math.random()*0.04
+  }));
+}
+resize();initBlobs();window.addEventListener('resize',()=>{resize();initBlobs()});
+let t=0;
 function draw(){
+  t+=0.0032;
   ctx.clearRect(0,0,W,H);
-  for(let i=0;i<pts.length;i++){
-    const p=pts[i];p.x+=p.vx;p.y+=p.vy;
-    if(p.x<0||p.x>W)p.vx=-p.vx;if(p.y<0||p.y>H)p.vy=-p.vy;
-    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(99,102,241,${p.o})`;ctx.fill();
-    for(let j=i+1;j<pts.length;j++){
-      const q=pts[j],dx=p.x-q.x,dy=p.y-q.y,d=Math.sqrt(dx*dx+dy*dy);
-      if(d<100){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle=`rgba(99,102,241,${(1-d/100)*.08})`;ctx.lineWidth=.5;ctx.stroke()}
-    }
-  }
+  blobs.forEach(b=>{
+    const x=b.x+Math.sin(t*b.sx+b.ax)*W*0.18;
+    const y=b.y+Math.cos(t*b.sy+b.ay)*H*0.18;
+    const g=ctx.createRadialGradient(x,y,0,x,y,b.r);
+    g.addColorStop(0,`rgba(${b.c},${b.o})`);
+    g.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,b.r,0,Math.PI*2);ctx.fill();
+  });
   requestAnimationFrame(draw);
 }
-initPts();draw();
-const ro=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')});},{threshold:.08});
-document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
-requestAnimationFrame(()=>document.querySelectorAll('.reveal').forEach(el=>{const r=el.getBoundingClientRect();if(r.top<window.innerHeight)el.classList.add('vis')}));
+draw();
+
+gsap.registerPlugin(ScrollTrigger);
+gsap.set('.reveal',{opacity:0,y:28});
+ScrollTrigger.batch('.reveal',{
+  start:'top 88%',
+  onEnter:batch=>gsap.to(batch,{opacity:1,y:0,duration:.9,ease:'expo.out',stagger:.08,overwrite:true})
+});
+gsap.from('.back-link',{opacity:0,y:-10,duration:.7,ease:'expo.out'});
+gsap.from('.page-title-wrap > *',{opacity:0,y:14,duration:.8,stagger:.08,ease:'expo.out',delay:.1});
+
+document.querySelectorAll('.magnetic').forEach(el=>{
+  const qx=gsap.quickTo(el,'x',{duration:.5,ease:'power3'});
+  const qy=gsap.quickTo(el,'y',{duration:.5,ease:'power3'});
+  el.addEventListener('mousemove',e=>{
+    const r=el.getBoundingClientRect();
+    qx((e.clientX-r.left-r.width/2)*.25);
+    qy((e.clientY-r.top-r.height/2)*.25);
+  });
+  el.addEventListener('mouseleave',()=>{qx(0);qy(0)});
+});
 </script>
 </body>
 </html>
