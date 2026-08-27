@@ -1,0 +1,200 @@
+/* ============================================================
+   Gabriel Gregório — shared design system
+   Light theme, inspired by isacandrade.com: white canvas, single
+   saturated blue accent, bordered cards, generous whitespace.
+   Inter for all UI text — bold display headings, regular body.
+   ============================================================ */
+
+:root{
+  color-scheme: light;
+
+  /* surfaces */
+  --bg:      #ffffff;
+  --bg-alt:  #f8f9fb;   /* alternating section tint */
+  --surface: #ffffff;   /* card fill */
+  --border:  #e5e7eb;
+
+  /* ink */
+  --fg:      #0f1729;   /* primary heading / body-strong */
+  --fg2:     #6b7280;   /* secondary — meta, nav, labels */
+  --fg3:     #4b5563;   /* body copy */
+
+  /* accent + brand */
+  --accent:      #3c83f6;
+  --accent-hi:   #2563eb;
+  --accent-soft: #eef4ff;  /* tinted surface for icons / callouts */
+  --highlight:   #3c83f6;  /* single-accent system — no secondary hue */
+  --verdant:     #15846e;
+
+  --tag-bg: #f3f4f6;
+  --tag-fg: #0f1729;
+
+  --radius:  16px;
+  --radius-sm: 10px;
+  --radius-pill: 9999px;
+  --ease-out:cubic-bezier(.2,0,0,1);
+  --dur-1:   150ms;
+  --dur-2:   260ms;
+
+  --shadow-sm: 0 1px 2px rgba(15,23,41,.04);
+  --shadow-md: 0 8px 24px rgba(15,23,41,.08);
+
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* spacing scale — base unit 6px */
+  --sp-6: 6px; --sp-12: 12px; --sp-18: 18px; --sp-24: 24px;
+  --sp-30: 30px; --sp-36: 36px; --sp-60: 60px; --sp-96: 96px; --sp-120: 120px;
+}
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:var(--font-sans);
+  font-weight:400;
+  background:var(--bg);
+  color:var(--fg3);
+  line-height:1.5;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  font-feature-settings:"ss01" on;
+}
+::selection{background:rgba(60,131,246,.18);color:var(--fg)}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+img{display:block;max-width:100%}
+strong{font-weight:600;color:var(--fg)}
+:focus-visible{outline:1.5px solid var(--accent);outline-offset:2px}
+
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-thumb{background:var(--fg2);border-radius:999px;border:3px solid transparent;background-clip:content-box;opacity:.3}
+::-webkit-scrollbar-track{background:transparent}
+
+.tnum{font-variant-numeric:tabular-nums}
+
+/* ===== structural top bar — sticky, blurred, bordered ===== */
+.tbar{
+  position:sticky;top:0;z-index:20;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  max-width:1280px;margin:0 auto;
+  padding:1.1rem clamp(1.25rem,4vw,2.5rem);
+  background:rgba(255,255,255,.85);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+}
+.tbar-id{
+  display:inline-flex;align-items:center;gap:.55rem;
+  font-family:var(--font-sans);font-size:1.05rem;font-weight:700;
+  letter-spacing:-.02em;color:var(--fg);
+}
+.tbar-id .mark{width:16px;height:16px;flex-shrink:0}
+.tbar-meta{
+  font-family:var(--font-sans);font-size:.7rem;font-weight:600;color:var(--fg2);
+  text-transform:uppercase;letter-spacing:.025em;
+}
+@media(max-width:640px){.tbar-meta{display:none}}
+
+/* ===== generic building blocks ===== */
+.idx{
+  font-family:var(--font-sans);font-size:.7rem;font-weight:700;color:var(--accent);
+  display:flex;align-items:center;gap:.6rem;margin-bottom:1rem;
+  text-transform:uppercase;letter-spacing:.06em;
+}
+.idx .n{font-weight:700;color:var(--accent)}
+
+.h-display{
+  font-family:var(--font-sans);font-weight:700;letter-spacing:-.02em;
+  line-height:1.1;color:var(--fg);
+}
+.h-display em{color:var(--accent);font-style:normal}
+
+.body-copy{font-family:var(--font-sans);font-weight:400;color:var(--fg3);line-height:1.65;max-width:62ch}
+.body-copy strong{color:var(--fg);font-weight:600}
+
+/* seam: spacious grid */
+.seam{display:grid;gap:var(--sp-30);background:transparent}
+.seam > *{background:transparent}
+
+/* card — bordered surface, the base unit of every section */
+.card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:1.75rem;transition:box-shadow var(--dur-2) var(--ease-out),border-color var(--dur-2) var(--ease-out),transform var(--dur-2) var(--ease-out);
+}
+.card:hover{box-shadow:var(--shadow-md);border-color:#d7dbe3}
+
+/* tags — pill chips, filled */
+.tag{
+  display:inline-flex;align-items:center;
+  font-family:var(--font-sans);font-size:.72rem;font-weight:600;
+  letter-spacing:.01em;
+  padding:.3rem .75rem;color:var(--tag-fg);
+  background:var(--tag-bg);border:none;border-radius:var(--radius-pill);
+  transition:background var(--dur-1) var(--ease-out),color var(--dur-1) var(--ease-out);
+}
+.tags{display:flex;flex-wrap:wrap;gap:.5rem}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  font-family:var(--font-sans);font-size:.85rem;font-weight:600;
+  padding:.8rem 1.3rem;border:1px solid transparent;color:#fff;
+  background:var(--accent);border-radius:var(--radius-sm);
+  transition:background var(--dur-1) var(--ease-out),transform var(--dur-1) var(--ease-out),box-shadow var(--dur-1) var(--ease-out);
+}
+.btn:hover{background:var(--accent-hi);box-shadow:var(--shadow-md)}
+.btn:active{transform:scale(.97)}
+.btn-outline{background:var(--surface);color:var(--fg);border:1px solid var(--border)}
+.btn-outline:hover{background:var(--bg-alt);box-shadow:none;border-color:#d7dbe3}
+.btn-ghost{background:transparent;border:none;color:var(--fg2);padding:.5rem 0;font-weight:600}
+.btn-ghost:hover{color:var(--fg)}
+
+/* images */
+.co-logo,.edu-logo{border-radius:12px}
+.arc-thumb-wrap,.log-thumb-wrap,.p-img,.testi-photo{border-radius:var(--radius)}
+
+/* ===== reveal-on-scroll ===== */
+.reveal{opacity:0;transform:translateY(14px)}
+.reveal.in{
+  opacity:1;transform:translateY(0);
+  transition:opacity .55s var(--ease-out),transform .55s var(--ease-out);
+}
+
+/* ===== footer ===== */
+.tfoot{
+  position:relative;z-index:2;max-width:1280px;margin:0 auto;
+  padding:2.5rem clamp(1.25rem,4vw,2.5rem) 3rem;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+  font-family:var(--font-sans);font-size:.78rem;color:var(--fg2);
+  border-top:1px solid var(--border);margin-top:var(--sp-60);
+}
+.tfoot b{color:var(--fg);font-weight:600}
+
+/* ===== back link ===== */
+.back-link{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-family:var(--font-sans);font-size:.85rem;font-weight:600;
+  color:var(--fg2);
+  padding:0;border:none;border-radius:0;
+  transition:color var(--dur-1) var(--ease-out);
+}
+.back-link:hover{color:var(--accent)}
+
+/* ===== status dot ===== */
+.avail-dot,.dot{width:6px;height:6px;border-radius:999px;background:var(--accent);flex-shrink:0}
+.dot.run{background:var(--accent);animation:pulse 1.2s var(--ease-out) infinite}
+
+/* ===== blinking block cursor (typewriter) ===== */
+.cur{
+  display:inline-block;width:2px;height:.95em;background:var(--accent);
+  border-radius:1px;margin-left:2px;vertical-align:-.12em;
+  animation:blink 1s steps(2,start) infinite;
+}
+
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.45);opacity:.5}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+@media(prefers-reduced-motion:reduce){
+  .cur,.dot.run{animation:none}
+}
+
+@media(max-width:768px){
+  .tbar{padding:.9rem 1.25rem}
+}

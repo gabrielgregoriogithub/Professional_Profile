@@ -3,610 +3,155 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Gabriel Gregório — Senior Data Analyst specializing in fraud analytics, risk intelligence, and data-driven business strategy.">
+<meta name="description" content="Gabriel Gregório, Senior Data Analyst specializing in fraud analytics, risk intelligence, and data-driven business strategy.">
 <title>Gabriel Gregório | Senior Data Analyst</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%233c83f6'/%3E%3Ctext x='50' y='70' font-family='Arial,Helvetica,sans-serif' font-weight='800' font-size='56' fill='%23ffffff' text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/system.css">
 <style>
-:root{
-  --bg:#050508;--card:#101025;--b2:rgba(255,255,255,.06);
-  --ind:#6366f1;--ind2:#818cf8;--cyan:#06b6d4;
-  --t1:#eef0f7;--t2:#8d92ab;--t3:#4c5069;
-  --grad:linear-gradient(135deg,#6366f1,#06b6d4);
-  --rl:16px;--glow2:0 0 60px rgba(99,102,241,.28);
-  --ease:cubic-bezier(.16,1,.3,1);
-  --cx:-999px;--cy:-999px;
-}
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{font-size:16px}
-body{
-  font-family:'Inter',sans-serif;
-  background:var(--bg);color:var(--t1);
-  min-height:100vh;overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:3rem 1.5rem;
-}
-a{text-decoration:none;color:inherit}
-img{display:block}
-.bg-layer{
-  position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
-  transform:scale(1.05);
-  animation:bgPan 46s ease-in-out infinite alternate;
-  will-change:transform;
-}
-.bg-image-wrap{position:absolute;inset:0}
-.bg-image{
-  position:absolute;inset:0;
-  background-image:url('fundo.webp');
-  background-size:cover;background-position:center;background-repeat:no-repeat;
-}
-.bg-fx{position:absolute;inset:0;width:100%;height:100%;mix-blend-mode:screen}
-@keyframes bgPan{
-  0%{transform:scale(1.05) translate3d(0,0,0)}
-  100%{transform:scale(1.12) translate3d(-1.4%,-1.1%,0)}
-}
-@media(prefers-reduced-motion:reduce){.bg-layer{animation:none}}
-.bg-scrim{
-  position:fixed;inset:0;z-index:1;pointer-events:none;
-  background:
-    radial-gradient(900px circle at 50% 38%, rgba(5,5,8,.2) 0%, rgba(5,5,8,.55) 62%, rgba(5,5,8,.82) 100%),
-    linear-gradient(to bottom, rgba(5,5,8,.35) 0%, rgba(5,5,8,.15) 22%, rgba(5,5,8,.55) 78%, rgba(5,5,8,.85) 100%);
-}
-body::before{
-  content:'';position:fixed;inset:0;z-index:2;pointer-events:none;opacity:.035;mix-blend-mode:overlay;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-body::after{
-  content:'';position:fixed;inset:0;z-index:3;pointer-events:none;
-  background:radial-gradient(700px circle at var(--cx) var(--cy),rgba(99,102,241,.07),transparent 40%);
-}
-.landing{position:relative;z-index:4;display:flex;flex-direction:column;align-items:center;gap:3.25rem;width:100%;max-width:1020px}
-.hero{text-align:center;width:100%;display:flex;flex-direction:column;align-items:center}
-.hero-kicker{
-  display:inline-flex;align-items:center;gap:.5rem;
-  font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:600;
-  color:var(--ind2);text-transform:uppercase;letter-spacing:.16em;
-  padding:.4rem .95rem;border:1px solid rgba(99,102,241,.22);border-radius:100px;
-  background:rgba(99,102,241,.06);margin-bottom:1.75rem;
-}
-.hero-name{
-  font-size:clamp(1.5rem,7.5vw,3.6rem);font-weight:900;letter-spacing:-.02em;line-height:1;
-  margin-bottom:1.5rem;white-space:nowrap;
-}
-.hero-name span{display:inline-block}
-.hero-name .grad{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.3}
-.sub-row{display:flex;align-items:center;justify-content:center;gap:.55rem;margin-bottom:.4rem}
-.morph-chip{width:10px;height:10px;background:var(--ind);display:inline-block;flex-shrink:0}
-.hero-sub{font-size:.82rem;color:var(--t2);font-family:'JetBrains Mono',monospace;letter-spacing:.08em}
-.contact-links{display:grid;grid-template-columns:repeat(4,1fr);gap:.65rem;width:100%;max-width:900px}
-.c-link{display:flex;align-items:center;gap:.9rem;padding:.85rem 1rem;min-height:3.75rem;min-width:0;box-sizing:border-box;background:var(--card);border:1px solid var(--b2);border-radius:10px;color:var(--t2);transition:border-color .3s,background .3s,color .3s}
-.c-link:hover{border-color:rgba(99,102,241,.3);color:var(--t1);background:rgba(99,102,241,.06)}
-.c-ic{width:34px;height:34px;border-radius:9px;background:rgba(99,102,241,.1);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
-.c-link>div:last-child{min-width:0}
-.c-lbl{font-size:.6rem;color:var(--t3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.12rem}
-.c-val{font-size:.8rem;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-@media(max-width:700px){.contact-links{grid-template-columns:1fr 1fr}}
-.cards-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;width:100%}
-.entry-card{
-  display:block;border-radius:var(--rl);overflow:hidden;
-  border:1px solid var(--b2);background:var(--card);position:relative;
-  transition:transform .5s var(--ease),border-color .35s,box-shadow .35s;
-}
-.entry-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease);z-index:1}
-.entry-card:hover::before{transform:scaleX(1)}
-.entry-card:hover{
-  border-color:rgba(99,102,241,.4);
-  box-shadow:var(--glow2);
-  transform:translateY(-8px);
-}
-.card-img{
-  width:100%;aspect-ratio:4/3;object-fit:cover;object-position:top;
-  transition:transform .5s var(--ease);
-}
-.entry-card:hover .card-img{transform:scale(1.05)}
-.card-footer{
-  padding:.9rem 1.1rem .95rem;
-  display:flex;justify-content:space-between;align-items:center;
-  border-top:1px solid var(--b2);
-}
-.card-info{display:flex;flex-direction:column;gap:.1rem}
-.card-label{font-size:.9rem;font-weight:700;color:var(--t1)}
-.card-desc{font-size:.68rem;color:var(--t3);font-family:'JetBrains Mono',monospace}
-.card-arrow{
-  font-size:1.1rem;color:var(--t3);flex-shrink:0;
-  transition:color .25s,transform .25s;
-}
-.entry-card:hover .card-arrow{color:var(--ind2);transform:translate(2px,-2px)}
-@media(max-width:900px){.cards-row{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:700px){
-  .cards-row{grid-template-columns:1fr;max-width:420px}
-  body{justify-content:flex-start;padding-top:4rem}
-}
+.hub{position:relative;z-index:1;max-width:1200px;margin:0 auto;width:100%;padding:0 clamp(1.25rem,4vw,2.5rem)}
+
+/* ---- hero: photo left in triangle mask, copy right ---- */
+.hero{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(2rem,5vw,4rem);align-items:center;padding:clamp(3rem,7vh,5.5rem) 0 clamp(2.5rem,5vh,4rem)}
+.hero-photo-wrap{position:relative;display:flex;justify-content:center}
+.hero-photo{width:min(320px,80%);aspect-ratio:5/6;clip-path:polygon(50% 100%,0 0,100% 0);background:var(--bg-alt);overflow:hidden}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.hero-eyebrow{font-family:var(--font-sans);font-size:.78rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.6rem}
+.hero-name{font-size:clamp(2.4rem,5.2vw,3.8rem);margin-bottom:.5rem}
+.hero-role{font-family:var(--font-sans);font-size:1rem;font-weight:600;color:var(--fg2);margin-bottom:1rem}
+.hero-blurb{font-size:1rem;font-weight:400;color:var(--fg3);line-height:1.65;margin-bottom:1.6rem;max-width:52ch}
+.hero-actions{display:flex;flex-wrap:wrap;gap:.9rem}
+@media(max-width:820px){.hero{grid-template-columns:1fr;text-align:center;padding-top:2.5rem}.hero-photo-wrap{order:-1}.hero-blurb{margin-left:auto;margin-right:auto}.hero-actions{justify-content:center}}
+
+/* ---- contact row ---- */
+.sec-contact{padding:clamp(2.5rem,5vh,3.5rem) 0}
+.data-row{grid-template-columns:repeat(4,1fr);gap:var(--sp-18)}
+.data-row .c-link{display:block}
+.c-lbl{font-family:var(--font-sans);font-size:.68rem;color:var(--fg2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.4rem;font-weight:700}
+.c-val{font-size:.92rem;font-weight:600;color:var(--fg);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.data-row .c-link:hover .c-val{color:var(--accent)}
+@media(max-width:820px){.data-row{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.data-row{grid-template-columns:1fr}}
+
+/* ---- portfolio archive ---- */
+.manifest{padding:clamp(2.5rem,5vh,3.5rem) 0 clamp(4rem,8vh,6rem)}
+.arc-grid{grid-template-columns:repeat(3,1fr)}
+.arc-card{display:flex;flex-direction:column;padding:0;overflow:hidden}
+.arc-thumb-wrap{position:relative;height:170px;overflow:hidden;background:var(--bg-alt);border-radius:0}
+.arc-thumb{width:100%;height:100%;object-fit:contain;padding:1rem;transition:transform .5s var(--ease-out)}
+.arc-card:hover .arc-thumb{transform:scale(1.04)}
+.arc-body{padding:1.4rem 1.5rem 1.6rem;flex:1;display:flex;flex-direction:column;gap:.5rem;min-width:0}
+.arc-cat{font-family:var(--font-sans);font-size:.68rem;color:var(--accent);text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+.arc-cat .n{color:var(--fg2);margin-right:.4rem}
+.arc-title{font-family:var(--font-sans);font-size:1.15rem;font-weight:700;color:var(--fg);line-height:1.25}
+.arc-desc{font-size:.85rem;font-weight:400;color:var(--fg3);line-height:1.5}
+.arc-go{margin-top:auto;padding-top:.9rem;display:flex;align-items:center;justify-content:space-between;font-family:var(--font-sans);font-size:.72rem;color:var(--fg2);font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.arc-card:hover .arc-go{color:var(--accent)}
+.arc-go .arrow{transition:transform .25s var(--ease-out)}
+.arc-card:hover .arc-go .arrow{transform:translate(3px,-3px)}
+@media(max-width:900px){.arc-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.arc-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<div class="bg-layer" aria-hidden="true">
-  <div class="bg-image-wrap" id="bgImgWrap"><div class="bg-image"></div></div>
-  <canvas class="bg-fx" id="bgFx"></canvas>
-</div>
-<div class="bg-scrim" aria-hidden="true"></div>
-<div class="landing">
-  <div class="hero">
-    <span class="hero-kicker">{ senior data analyst · são paulo, brazil }</span>
-    <h1 class="hero-name">
-      <span id="nameGabriel">Gabriel</span> <span id="nameGregorio" class="grad">Gregório</span>
-    </h1>
-    <div class="sub-row">
-      <span class="morph-chip" id="morphChip"></span>
-      <p class="hero-sub" id="heroSub">Fraud Analytics · Risk Intelligence · User Behavior · Data-Driven Strategy</p>
+
+<header class="tbar">
+  <div class="tbar-id">
+    <svg class="mark" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect width="24" height="24" rx="6" fill="#3c83f6"/>
+      <text x="12" y="17" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="14" fill="#ffffff" text-anchor="middle">G</text>
+    </svg>
+    Gabriel Gregório
+  </div>
+  <div class="tbar-meta">São Paulo, Brazil</div>
+</header>
+
+<div class="hub">
+
+  <section class="hero">
+    <div class="hero-photo-wrap reveal">
+      <div class="hero-photo"><img src="Foto%20Gabriel%20Gregorio.png" alt="Gabriel Gregório"></div>
+    </div>
+    <div>
+      <div class="hero-eyebrow reveal">Hello, I'm</div>
+      <h1 class="h-display hero-name reveal">Gabriel Gregório</h1>
+      <div class="hero-role reveal"><span id="typed"></span><span class="cur"></span></div>
+      <p class="hero-blurb reveal">Eight years turning complex data into <strong>measurable business outcomes</strong> across fintech, banking, payments, startups, and e-commerce, with fraud monitoring, experimentation, and executive-level insight.</p>
+      <div class="hero-actions reveal">
+        <a href="bio.html" class="btn">Read the full profile</a>
+        <a href="https://wa.me/5511995231989" target="_blank" rel="noopener" class="btn btn-outline">Get in touch</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="sec-contact">
+    <div class="idx reveal">Contact</div>
+    <div class="seam data-row reveal">
+      <a href="mailto:gabrielgregorio10@gmail.com" class="c-link"><div class="c-lbl">Email</div><div class="c-val">gabrielgregorio10@gmail.com</div></a>
+      <a href="https://www.linkedin.com/in/gabrielgregorio" target="_blank" rel="noopener" class="c-link"><div class="c-lbl">LinkedIn</div><div class="c-val">/in/gabrielgregorio</div></a>
+      <a href="https://github.com/gabrielgregoriogithub/" target="_blank" rel="noopener" class="c-link"><div class="c-lbl">GitHub</div><div class="c-val">/gabrielgregoriogithub</div></a>
+      <a href="Gabriel_Gregorio%20.pdf" download class="c-link"><div class="c-lbl">Resume</div><div class="c-val">Download CV ↓</div></a>
     </div>
   </div>
-  <div class="contact-links">
-    <a href="mailto:gabrielgregorio10@gmail.com" class="c-link reveal magnetic"><div class="c-ic">✉️</div><div><div class="c-lbl">Email</div><div class="c-val">gabrielgregorio10@gmail.com</div></div></a>
-    <a href="https://www.linkedin.com/in/gabrielgregorio" target="_blank" rel="noopener" class="c-link reveal magnetic"><div class="c-ic">💼</div><div><div class="c-lbl">LinkedIn</div><div class="c-val">linkedin.com/in/gabrielgregorio</div></div></a>
-    <a href="https://github.com/gabrielgregoriogithub/" target="_blank" rel="noopener" class="c-link reveal magnetic"><div class="c-ic">🐙</div><div><div class="c-lbl">GitHub</div><div class="c-val">github.com/gabrielgregoriogithub</div></div></a>
-    <a href="Gabriel_Gregorio%20.pdf" download class="c-link reveal magnetic"><div class="c-ic">📄</div><div><div class="c-lbl">Resume</div><div class="c-val">Download CV</div></div></a>
+
+  <div class="manifest" data-stagger>
+    <div class="idx reveal">Portfolio <span style="color:var(--fg2);font-weight:400;text-transform:none;letter-spacing:0">· three records</span></div>
+    <div class="seam arc-grid">
+
+      <a href="case-studies.html" class="arc-card card reveal">
+        <div class="arc-thumb-wrap"><img class="arc-thumb" src="Case Studies/Case Studies.png" alt="Case Studies: real-world case studies in tech companies"></div>
+        <div class="arc-body">
+          <span class="arc-cat"><span class="n">01</span>Case studies</span>
+          <span class="arc-title">Case Studies</span>
+          <span class="arc-desc">Real-world case studies in tech companies</span>
+          <div class="arc-go"><span>Open record</span><span class="arrow">↗</span></div>
+        </div>
+      </a>
+
+      <a href="ml-models.html" class="arc-card card reveal">
+        <div class="arc-thumb-wrap"><img class="arc-thumb" src="ML Models and Dashboards/ML Models & Dashboards.png" alt="ML Models &amp; Dashboards"></div>
+        <div class="arc-body">
+          <span class="arc-cat"><span class="n">02</span>Machine learning</span>
+          <span class="arc-title">ML Models &amp; Dashboards</span>
+          <span class="arc-desc">Predictive models · dashboards</span>
+          <div class="arc-go"><span>Open record</span><span class="arrow">↗</span></div>
+        </div>
+      </a>
+
+      <a href="ai-projects.html" class="arc-card card reveal">
+        <div class="arc-thumb-wrap"><img class="arc-thumb" src="AI Projects/AI Projetcs.png" alt="AI Projects"></div>
+        <div class="arc-body">
+          <span class="arc-cat"><span class="n">03</span>Applied AI</span>
+          <span class="arc-title">AI Projects</span>
+          <span class="arc-desc">AI applications built to solve real problems</span>
+          <div class="arc-go"><span>Open record</span><span class="arrow">↗</span></div>
+        </div>
+      </a>
+
+    </div>
   </div>
-  <div class="cards-row">
-    <a href="bio.html" class="entry-card reveal">
-      <img class="card-img" src="profile.png" alt="Bio &amp; Profile">
-      <div class="card-footer">
-        <div class="card-info">
-          <span class="card-label">Bio &amp; Profile</span>
-          <span class="card-desc">Experience · Skills · Education</span>
-        </div>
-        <span class="card-arrow">↗</span>
-      </div>
-    </a>
-    <a href="case-studies.html" class="entry-card reveal">
-      <img class="card-img" src="Case Studies/Case Studies.png" alt="Case Studies">
-      <div class="card-footer">
-        <div class="card-info">
-          <span class="card-label">Case Studies</span>
-          <span class="card-desc">Real-world case studies in tech companies</span>
-        </div>
-        <span class="card-arrow">↗</span>
-      </div>
-    </a>
-    <a href="ml-models.html" class="entry-card reveal">
-      <img class="card-img" src="ML Models and Dashboards/ML Models & Dashboards.png" alt="ML Models & Dashboards">
-      <div class="card-footer">
-        <div class="card-info">
-          <span class="card-label">ML Models &amp; Dashboards</span>
-          <span class="card-desc">Machine Learning · Predictive Models · Dashboards</span>
-        </div>
-        <span class="card-arrow">↗</span>
-      </div>
-    </a>
-    <a href="ai-projects.html" class="entry-card reveal">
-      <img class="card-img" src="AI Projects/AI Projetcs.png" alt="AI Projects">
-      <div class="card-footer">
-        <div class="card-info">
-          <span class="card-label">AI Projects</span>
-          <span class="card-desc">AI applications built to solve real problems</span>
-        </div>
-        <span class="card-arrow">↗</span>
-      </div>
-    </a>
-  </div>
+
 </div>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+
+<footer class="tfoot">
+  <span>© 2026 <b>Gabriel Gregório</b> · Senior Data Analyst</span>
+  <span>Rev 2026.08</span>
+</footer>
+
+<script src="js/site.js"></script>
 <script>
-document.addEventListener('mousemove',e=>{
-  document.documentElement.style.setProperty('--cx',e.clientX+'px');
-  document.documentElement.style.setProperty('--cy',e.clientY+'px');
-});
-
-(function(){
-  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const isTouch = matchMedia('(pointer: coarse)').matches;
-  const canvas = document.getElementById('bgFx');
-  const ctx = canvas.getContext('2d');
-  const imgWrap = document.getElementById('bgImgWrap');
-
-  const IW = 1672, IH = 941; // native fundo.webp size
-  let Vw, Vh, DPR, scale, dw, dh, ox, oy, lowPower;
-
-  function computeFit(){
-    Vw = innerWidth; Vh = innerHeight;
-    lowPower = Vw < 760 || (navigator.hardwareConcurrency || 8) <= 4;
-    DPR = lowPower ? 1 : Math.min(devicePixelRatio || 1, 1.5);
-    scale = Math.max(Vw / IW, Vh / IH);
-    dw = IW * scale; dh = IH * scale;
-    ox = (Vw - dw) / 2; oy = (Vh - dh) / 2;
-    canvas.width = Vw * DPR; canvas.height = Vh * DPR;
-    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-  }
-  const R = (fx, fy) => [ox + fx * dw, oy + fy * dh];
-  computeFit();
-  addEventListener('resize', computeFit);
-
-  // ---- regions (fractions of native image) ----
-  const REG = {
-    map:     {x0:0.00, y0:0.00, x1:0.27, y1:0.46},
-    flow:    {x0:0.05, y0:0.28, x1:0.46, y1:0.72},
-    wave:    {x0:0.00, y0:0.70, x1:1.00, y1:1.00},
-    chart:   {x0:0.765,y0:0.09, x1:0.975,y1:0.27},
-    bars:    {x0:0.885,y0:0.30, x1:0.985,y1:0.46},
-    network: {x0:0.64, y0:0.43, x1:0.985,y1:0.85},
-    db:      {x0:0.835,y0:0.63, x1:0.935,y1:0.815}
-  };
-
-  // ---- parallax (mouse-driven, two depth planes) ----
-  let mx = 0, my = 0, imgPX = 0, imgPY = 0, fxPX = 0, fxPY = 0;
-  if(!isTouch && !reduceMotion){
-    addEventListener('mousemove', e=>{
-      mx = (e.clientX / Vw - 0.5);
-      my = (e.clientY / Vh - 0.5);
-    });
-  }
-
-  // ---- flow lines (data pipeline) ----
-  const flowCurves = [
-    {p0:[0.06,0.30],p1:[0.22,0.42],p2:[0.44,0.60]},
-    {p0:[0.05,0.37],p1:[0.24,0.51],p2:[0.42,0.66]},
-    {p0:[0.07,0.44],p1:[0.20,0.57],p2:[0.40,0.71]}
-  ].map(c=>({...c, glowPhase:Math.random()*10, dots:[
-    {t0:Math.random(), speed:0.045+Math.random()*0.02},
-    {t0:Math.random(), speed:0.045+Math.random()*0.02}
-  ]}));
-  function bez(p0,p1,p2,t){
-    const it=1-t;
-    return [it*it*p0[0]+2*it*t*p1[0]+t*t*p2[0], it*it*p0[1]+2*it*t*p1[1]+t*t*p2[1]];
-  }
-  function drawFlow(t){
-    flowCurves.forEach(c=>{
-      const glow = 0.05+0.05*(0.5+0.5*Math.sin(t*0.15+c.glowPhase));
-      ctx.beginPath();
-      for(let s=0;s<=20;s++){
-        const [x,y]=R(...bez(c.p0,c.p1,c.p2,s/20));
-        s===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
-      }
-      ctx.strokeStyle=`rgba(120,180,255,${glow})`;
-      ctx.lineWidth=1;
-      ctx.stroke();
-      c.dots.forEach(d=>{
-        const tt=((t*d.speed)+d.t0)%1;
-        const [x,y]=R(...bez(c.p0,c.p1,c.p2,tt));
-        const fade = Math.sin(tt*Math.PI);
-        ctx.beginPath();
-        ctx.fillStyle=`rgba(180,220,255,${0.55*fade})`;
-        ctx.shadowColor='rgba(120,190,255,.8)';
-        ctx.shadowBlur=6;
-        ctx.arc(x,y,1.6,0,Math.PI*2);
-        ctx.fill();
-        ctx.shadowBlur=0;
-      });
-    });
-  }
-
-  // ---- wave shimmer ----
-  const waveDots = [];
-  (function(){
-    const n = lowPower?16:36;
-    for(let i=0;i<n;i++){
-      waveDots.push({
-        fx:Math.random(), fy:REG.wave.y0+Math.random()*(REG.wave.y1-REG.wave.y0),
-        phase:Math.random()*10, speed:0.12+Math.random()*0.1, drift:(Math.random()-.5)*0.003
-      });
-    }
-  })();
-  function drawWave(t){
-    waveDots.forEach(p=>{
-      p.fx += p.drift*0.01;
-      if(p.fx>1.02) p.fx=-0.02; if(p.fx<-0.02) p.fx=1.02;
-      const bob = Math.sin(t*p.speed+p.phase)*0.012;
-      const [x,y]=R(p.fx, p.fy+bob);
-      const o = 0.12+0.14*(0.5+0.5*Math.sin(t*p.speed*1.4+p.phase));
-      ctx.beginPath();
-      ctx.fillStyle=`rgba(150,200,255,${o})`;
-      ctx.arc(x,y,1.1,0,Math.PI*2);
-      ctx.fill();
-    });
-  }
-
-  // ---- network nodes ----
-  const netNodes = [];
-  (function(){
-    const n = lowPower?6:10;
-    for(let i=0;i<n;i++){
-      netNodes.push({
-        fx:REG.network.x0+Math.random()*(REG.network.x1-REG.network.x0),
-        fy:REG.network.y0+Math.random()*(REG.network.y1-REG.network.y0),
-        phase:Math.random()*10, speed:0.25+Math.random()*0.25
-      });
-    }
-  })();
-  const netEdges = [];
-  netNodes.forEach((n,i)=>{
-    const dists = netNodes.map((m,j)=>({j,d:i===j?1e9:Math.hypot(n.fx-m.fx,n.fy-m.fy)})).sort((a,b)=>a.d-b.d);
-    for(let k=0;k<2;k++){
-      const j=dists[k].j;
-      if(!netEdges.some(e=>(e.a===i&&e.b===j)||(e.a===j&&e.b===i))) netEdges.push({a:i,b:j,phase:Math.random()*10,speed:0.06+Math.random()*0.05});
-    }
-  });
-  let nextSignal = 3+Math.random()*3, activeSignal=null;
-  function drawNetwork(t,dt){
-    netEdges.forEach(e=>{
-      const o = Math.max(0, Math.sin(t*e.speed+e.phase))*0.16;
-      if(o<=0.01) return;
-      const [x1,y1]=R(netNodes[e.a].fx,netNodes[e.a].fy);
-      const [x2,y2]=R(netNodes[e.b].fx,netNodes[e.b].fy);
-      ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);
-      ctx.strokeStyle=`rgba(140,190,255,${o})`;ctx.lineWidth=0.8;ctx.stroke();
-    });
-    nextSignal -= dt;
-    if(nextSignal<=0 && !activeSignal){
-      const e = netEdges[Math.floor(Math.random()*netEdges.length)];
-      activeSignal = {e, start:t, dur:1.1+Math.random()*0.5};
-      nextSignal = 3+Math.random()*4;
-    }
-    if(activeSignal){
-      const p=(t-activeSignal.start)/activeSignal.dur;
-      if(p>=1) activeSignal=null;
-      else{
-        const a=netNodes[activeSignal.e.a], b=netNodes[activeSignal.e.b];
-        const [x,y]=R(a.fx+(b.fx-a.fx)*p, a.fy+(b.fy-a.fy)*p);
-        ctx.beginPath();ctx.fillStyle='rgba(200,230,255,.9)';
-        ctx.shadowColor='rgba(140,190,255,.9)';ctx.shadowBlur=7;
-        ctx.arc(x,y,1.8,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
-      }
-    }
-    netNodes.forEach(n=>{
-      const pulse=0.5+0.5*Math.sin(t*n.speed+n.phase);
-      const [x,y]=R(n.fx,n.fy);
-      ctx.beginPath();
-      ctx.fillStyle=`rgba(170,210,255,${0.25+0.35*pulse})`;
-      ctx.arc(x,y,1.3+1.1*pulse,0,Math.PI*2);
-      ctx.fill();
-    });
-  }
-
-  // ---- line chart ----
-  const chartPts = [[0,0.72],[0.16,0.34],[0.32,0.56],[0.48,0.18],[0.64,0.5],[0.82,0.12],[1,0.02]]
-    .map(([fx,fy])=>[REG.chart.x0+fx*(REG.chart.x1-REG.chart.x0), REG.chart.y0+fy*(REG.chart.y1-REG.chart.y0)]);
-  const CHART_CYCLE=5.5, CHART_SWEEP=1.9;
-  function drawChart(t){
-    chartPts.forEach((p,i)=>{
-      const pulse=0.5+0.5*Math.sin(t*0.6+i*1.3);
-      const [x,y]=R(p[0],p[1]);
-      ctx.beginPath();
-      ctx.fillStyle=`rgba(150,205,255,${0.3+0.35*pulse})`;
-      ctx.arc(x,y,1.1+0.7*pulse,0,Math.PI*2);
-      ctx.fill();
-    });
-    const cyc=t%CHART_CYCLE;
-    if(cyc<CHART_SWEEP){
-      const p=cyc/CHART_SWEEP;
-      const seg=(chartPts.length-1)*p;
-      const i=Math.min(Math.floor(seg),chartPts.length-2);
-      const f=seg-i;
-      const fx=chartPts[i][0]+(chartPts[i+1][0]-chartPts[i][0])*f;
-      const fy=chartPts[i][1]+(chartPts[i+1][1]-chartPts[i][1])*f;
-      const [x,y]=R(fx,fy);
-      ctx.beginPath();
-      ctx.fillStyle='rgba(210,235,255,.95)';
-      ctx.shadowColor='rgba(150,205,255,.9)';ctx.shadowBlur=9;
-      ctx.arc(x,y,2,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
-    }
-  }
-
-  // ---- bar chart ----
-  const barCount=5;
-  function drawBars(t){
-    for(let i=0;i<barCount;i++){
-      const fx=REG.bars.x0+(i+0.5)*(REG.bars.x1-REG.bars.x0)/barCount;
-      const breathe=0.5+0.5*Math.sin(t*0.35+i*0.9);
-      const hFrac=(0.1+0.06*breathe)*(REG.bars.y1-REG.bars.y0);
-      const [x,yBase]=R(fx,REG.bars.y1);
-      const [,yTop]=R(fx,REG.bars.y1-hFrac);
-      const grad=ctx.createLinearGradient(0,yBase,0,yTop);
-      grad.addColorStop(0,'rgba(150,190,255,0)');
-      grad.addColorStop(1,`rgba(160,200,255,${0.12+0.1*breathe})`);
-      ctx.fillStyle=grad;
-      ctx.fillRect(x-1.5,yTop,3,yBase-yTop);
-    }
-  }
-
-  // ---- database pulse ----
-  function drawDb(t){
-    const cyc=(t*0.18)%1;
-    const fy=REG.db.y0+cyc*(REG.db.y1-REG.db.y0);
-    const [x0]=R(REG.db.x0,fy), [x1]=R(REG.db.x1,fy);
-    const [,y]=R(0,fy);
-    const grad=ctx.createLinearGradient(x0,0,x1,0);
-    grad.addColorStop(0,'rgba(150,210,255,0)');
-    grad.addColorStop(0.5,'rgba(180,225,255,.5)');
-    grad.addColorStop(1,'rgba(150,210,255,0)');
-    ctx.fillStyle=grad;
-    ctx.fillRect(x0,y-3,x1-x0,6);
-  }
-
-  // ---- map blinking dots ----
-  const mapDots=[];
-  (function(){
-    const n=lowPower?12:22;
-    for(let i=0;i<n;i++){
-      mapDots.push({
-        fx:REG.map.x0+Math.random()*(REG.map.x1-REG.map.x0),
-        fy:REG.map.y0+Math.random()*(REG.map.y1-REG.map.y0),
-        phase:Math.random()*20, period:5+Math.random()*7
-      });
-    }
-  })();
-  let nextMapLink=4+Math.random()*3, mapLink=null;
-  function drawMap(t,dt){
-    mapDots.forEach(d=>{
-      const cyc=(t+d.phase)%d.period;
-      const blink=Math.exp(-Math.pow((cyc-d.period*0.5)/(d.period*0.09),2));
-      if(blink<0.03) return;
-      const [x,y]=R(d.fx,d.fy);
-      ctx.beginPath();
-      ctx.fillStyle=`rgba(160,210,255,${0.55*blink})`;
-      ctx.arc(x,y,1.3,0,Math.PI*2);
-      ctx.fill();
-    });
-    nextMapLink-=dt;
-    if(nextMapLink<=0 && !mapLink){
-      const a=mapDots[Math.floor(Math.random()*mapDots.length)];
-      const b=mapDots[Math.floor(Math.random()*mapDots.length)];
-      if(a!==b){ mapLink={a,b,start:t,dur:1.6}; nextMapLink=5+Math.random()*4; }
-      else nextMapLink=0.5;
-    }
-    if(mapLink){
-      const p=(t-mapLink.start)/mapLink.dur;
-      if(p>=1) mapLink=null;
-      else{
-        const o=Math.sin(p*Math.PI)*0.35;
-        const [x1,y1]=R(mapLink.a.fx,mapLink.a.fy), [x2,y2]=R(mapLink.b.fx,mapLink.b.fy);
-        ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);
-        ctx.strokeStyle=`rgba(150,200,255,${o})`;ctx.lineWidth=0.7;ctx.stroke();
-      }
-    }
-  }
-
-  // ---- ambient particles ----
-  const ambient=[];
-  (function(){
-    const n=lowPower?8:18;
-    for(let i=0;i<n;i++){
-      ambient.push({
-        fx:Math.random(), fy:Math.random(),
-        vx:(Math.random()-.5)*0.00003, vy:(Math.random()-.5)*0.00002,
-        phase:Math.random()*10, followCurve: i<3 ? i%flowCurves.length : -1, ft0:Math.random()
-      });
-    }
-  })();
-  function drawAmbient(t){
-    ambient.forEach(p=>{
-      let x,y,o;
-      if(p.followCurve>=0){
-        const c=flowCurves[p.followCurve];
-        const tt=((t*0.03)+p.ft0)%1;
-        [x,y]=R(...bez(c.p0,c.p1,c.p2,tt));
-        o=0.25*Math.sin(tt*Math.PI);
-      }else{
-        p.fx+=p.vx; p.fy+=p.vy;
-        if(p.fx<0)p.fx=1; if(p.fx>1)p.fx=0;
-        if(p.fy<0)p.fy=1; if(p.fy>1)p.fy=0;
-        [x,y]=R(p.fx,p.fy);
-        o=0.1+0.08*(0.5+0.5*Math.sin(t*0.2+p.phase));
-      }
-      ctx.beginPath();
-      ctx.fillStyle=`rgba(170,205,255,${o})`;
-      ctx.arc(x,y,1,0,Math.PI*2);
-      ctx.fill();
-    });
-  }
-
-  // ---- main loop ----
-  let raf=null, last=performance.now();
-  function frame(now){
-    const dt=Math.min((now-last)/1000, 0.05); last=now;
-    const t=now/1000;
-
-    imgPX += (mx*6 - imgPX)*0.05; imgPY += (my*4 - imgPY)*0.05;
-    fxPX  += (mx*11 - fxPX)*0.05; fxPY  += (my*8 - fxPY)*0.05;
-    imgWrap.style.transform = `translate3d(${imgPX}px,${imgPY}px,0)`;
-    canvas.style.transform  = `translate3d(${fxPX}px,${fxPY}px,0)`;
-
-    ctx.clearRect(0,0,Vw,Vh);
-    drawFlow(t);
-    drawWave(t);
-    drawNetwork(t,dt);
-    drawChart(t);
-    drawBars(t);
-    drawDb(t);
-    drawMap(t,dt);
-    drawAmbient(t);
-
-    raf=requestAnimationFrame(frame);
-  }
-  function start(){ if(raf===null){ last=performance.now(); raf=requestAnimationFrame(frame); } }
-  function stop(){ if(raf!==null){ cancelAnimationFrame(raf); raf=null; } }
-
-  if(reduceMotion){
-    ctx.clearRect(0,0,Vw,Vh);
-    drawWave(0); drawNetwork(0,0); drawChart(0); drawBars(0); drawDb(0); drawMap(0,0);
-  }else{
-    document.addEventListener('visibilitychange', ()=> document.hidden ? stop() : start());
-    start();
-  }
-})();
-
-gsap.set('.reveal',{opacity:0,y:22});
-const tl=gsap.timeline({defaults:{ease:'expo.out'}});
-tl.from('.hero-kicker',{opacity:0,y:-12,duration:.7})
-  .to('.contact-links .c-link',{opacity:1,y:0,duration:.7,stagger:.06},'+=.9');
-
-document.querySelectorAll('.magnetic').forEach(el=>{
-  const qx=gsap.quickTo(el,'x',{duration:.5,ease:'power3'});
-  const qy=gsap.quickTo(el,'y',{duration:.5,ease:'power3'});
-  el.addEventListener('mousemove',e=>{
-    const r=el.getBoundingClientRect();
-    qx((e.clientX-r.left-r.width/2)*.15);
-    qy((e.clientY-r.top-r.height/2)*.15);
-  });
-  el.addEventListener('mouseleave',()=>{qx(0);qy(0)});
-});
-</script>
-<script type="module">
-import { animate, stagger, createScope } from 'https://esm.sh/animejs@4';
-
-function splitLetters(el){
-  const text = el.textContent;
-  el.textContent = '';
-  return [...text].map(ch=>{
-    const s = document.createElement('span');
-    s.textContent = ch===' ' ? ' ' : ch;
-    s.style.display = 'inline-block';
-    el.appendChild(s);
-    return s;
-  });
+const roles=['Senior Data Analyst','Senior Product Analyst','Fraud & Risk Intelligence','A/B Experimentation Expert','BI & Analytics Lead'];
+let rIdx=0,cIdx=0,deleting=false;
+const typedEl=document.getElementById('typed');
+function typeWriter(){
+  const cur=roles[rIdx];
+  if(!deleting){typedEl.textContent=cur.slice(0,cIdx+1);cIdx++;if(cIdx===cur.length){deleting=true;setTimeout(typeWriter,2200);return}}
+  else{typedEl.textContent=cur.slice(0,cIdx-1);cIdx--;if(cIdx===0){deleting=false;rIdx=(rIdx+1)%roles.length}}
+  setTimeout(typeWriter,deleting?36:68);
 }
-
-const gLetters = splitLetters(document.getElementById('nameGabriel'));
-const nameGregorio = document.getElementById('nameGregorio');
-
-animate([...gLetters, nameGregorio], {
-  opacity:[0,1],
-  translateY:[40,0],
-  rotate:[8,0],
-  duration:900,
-  delay: stagger(28),
-  ease: 'outExpo'
-});
-
-animate('#morphChip', {
-  translateX:[-40,0],
-  borderRadius:['0%','50%'],
-  backgroundColor:['#6366f1','#22d3ee'],
-  filter:['blur(6px)','blur(0px)'],
-  duration:1000,
-  ease:'outExpo',
-  delay:650
-});
-animate('#heroSub', {
-  opacity:[0,1],
-  filter:['blur(8px)','blur(0px)'],
-  translateY:[10,0],
-  duration:900,
-  ease:'outExpo',
-  delay:800
-});
-
-createScope({ root: '.cards-row' }).add(()=>{
-  animate('.entry-card', {
-    opacity:[0,1],
-    translateY:[40,0],
-    scale:[0.94,1],
-    delay: stagger(120, {start:1300}),
-    duration:800,
-    ease:'outExpo'
-  });
-});
+setTimeout(typeWriter,500);
 </script>
 </body>
 </html>

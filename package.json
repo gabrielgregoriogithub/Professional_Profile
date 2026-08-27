@@ -1,0 +1,23 @@
+{
+  "name": "pagina-pessoal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabrielgregoriogithub/Professional_Profile.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/gabrielgregoriogithub/Professional_Profile/issues"
+  },
+  "homepage": "https://github.com/gabrielgregoriogithub/Professional_Profile#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^26.2.0"
+  }
+}
