@@ -37,7 +37,7 @@
 
 /* ---- portfolio archive ---- */
 .manifest{padding:clamp(2.5rem,5vh,3.5rem) 0 clamp(4rem,8vh,6rem)}
-.arc-grid{grid-template-columns:repeat(3,1fr)}
+.arc-grid{grid-template-columns:repeat(4,1fr)}
 .arc-card{display:flex;flex-direction:column;padding:0;overflow:hidden}
 .arc-thumb-wrap{position:relative;height:170px;overflow:hidden;background:var(--bg-alt);border-radius:0}
 .arc-thumb{width:100%;height:100%;object-fit:contain;padding:1rem;transition:transform .5s var(--ease-out)}
@@ -51,7 +51,7 @@
 .arc-card:hover .arc-go{color:var(--accent)}
 .arc-go .arrow{transition:transform .25s var(--ease-out)}
 .arc-card:hover .arc-go .arrow{transform:translate(3px,-3px)}
-@media(max-width:900px){.arc-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:1100px){.arc-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:640px){.arc-grid{grid-template-columns:1fr}}
 </style>
 </head>
@@ -97,7 +97,7 @@
   </div>
 
   <div class="manifest" data-stagger>
-    <div class="idx reveal">Portfolio <span style="color:var(--fg2);font-weight:400;text-transform:none;letter-spacing:0">· three records</span></div>
+    <div class="idx reveal">Portfolio <span style="color:var(--fg2);font-weight:400;text-transform:none;letter-spacing:0">· four records</span></div>
     <div class="seam arc-grid">
 
       <a href="case-studies.html" class="arc-card card reveal">
@@ -126,6 +126,16 @@
           <span class="arc-cat"><span class="n">03</span>Applied AI</span>
           <span class="arc-title">AI Projects</span>
           <span class="arc-desc">AI applications built to solve real problems</span>
+          <div class="arc-go"><span>Open record</span><span class="arrow">↗</span></div>
+        </div>
+      </a>
+
+      <a href="ai-games.html" class="arc-card card reveal">
+        <div class="arc-thumb-wrap"><img class="arc-thumb" src="AI Games/AI Games.png" alt="AI Games"></div>
+        <div class="arc-body">
+          <span class="arc-cat"><span class="n">04</span>AI games</span>
+          <span class="arc-title">AI Games</span>
+          <span class="arc-desc">Games built with AI for browser and smartphone</span>
           <div class="arc-go"><span>Open record</span><span class="arrow">↗</span></div>
         </div>
       </a>
